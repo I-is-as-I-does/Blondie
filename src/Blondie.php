@@ -32,24 +32,24 @@ class Blondie
         if ($protocol == 'https') {
             $secure = true; // @doc: aka require HTTPS to exchange cookies
         }
-        if ($this->config["httponly"] === false) {
+        if ($this->httponly === false) {
             $httponly = false;
         }
-        if (in_array($this->config["samesite"], ['Lax', 'Strict'])) {
-            $samesite = $this->config["samesite"];
+        if (in_array($this->samesite, ['Lax', 'Strict'])) {
+            $samesite = $this->samesite;
         }
-        if ($this->config["lifetime"] > 0) {
-            $lifetime = $this->config["lifetime"];
+        if ($this->lifetime > 0) {
+            $lifetime = $this->lifetime;
         }
-        if ($this->config["path"] != '/') {
-            $path = $this->config["path"];
+        if ($this->path != '/') {
+            $path = $this->path;
         }
 
         $cookieParam = [
             'lifetime' => $lifetime,
             'path' => $path,
             'domain' => $_SERVER['HTTP_HOST'],
-            'secure' => $secure,
+            'secure' => $secure, 
             'httponly' => $httponly, // @doc: if true, prevent JavaScript to access session cookies
             'samesite' => $samesite,
         ];
